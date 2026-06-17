@@ -29,7 +29,6 @@ jobs:
         run: echo "Docker container build"
 
   test:
-    if: inputs.environment == 'dev'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -37,6 +36,7 @@ jobs:
         run: echo "Testing the container"
 
   deploy:
+    if: inputs.environment == 'dev'
     needs: [test, build]
     runs-on: ubuntu-latest
     steps:
